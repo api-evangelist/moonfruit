@@ -1,7 +1,26 @@
 aid: moonfruit
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/moonfruit.png
 name: MoonFruit
-description: MoonFruit is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: MoonFruit is a directory platform that connects businesses with vetted
+  digital marketing agencies worldwide, letting users search and filter agencies by
+  service specialization (SEO, PPC, content marketing, web design, branding, video
+  production and more) and by geographic location across major US cities and international
+  markets such as London and Dubai. Each listing surfaces agency details including
+  location, budget ranges and service descriptions, and agencies can submit or claim
+  their own profiles. The company was surfaced as a portfolio company of 500 Global
+  and added to the API Evangelist network for enrichment; as of this pass the live
+  site publishes no public API, developer portal, or programmatic surface.
 url: https://raw.githubusercontent.com/api-evangelist/moonfruit/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,9 +30,14 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Directory
+- Marketing Agencies
+- Digital Marketing
+- Marketplace
+- Website
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -21,5 +45,22 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/moonfruit-domain-security.yml
 - type: Website
   url: https://moonfruit.com
+- type: Blog
+  url: https://moonfruit.com/blog
+- type: HelpCenter
+  url: https://moonfruit.com/faq
+- type: SignUp
+  url: https://moonfruit.com/sign-up
+- type: PrivacyPolicy
+  url: https://moonfruit.com/privacy-policy
+- type: TermsOfService
+  url: https://moonfruit.com/terms-conditions
+x-enrichment:
+  date: '2026-07-20'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
