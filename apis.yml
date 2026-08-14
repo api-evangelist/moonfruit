@@ -30,7 +30,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Directory
@@ -59,8 +59,39 @@ common:
   url: https://moonfruit.com/privacy-policy
 - type: TermsOfService
   url: https://moonfruit.com/terms-conditions
+- type: Support
+  url: https://moonfruit.com/contact
+- type: LinkedIn
+  url: https://www.linkedin.com/company/moonfruitsocial/
+- type: LLMsTxt
+  url: llms/moonfruit-llms.txt
+- type: Plans
+  url: plans/moonfruit-plans-pricing.yml
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: minimal
-  artifacts_added: 1
+  artifacts_added: 3
   pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    MoonFruit is a WordPress-hosted directory of digital marketing agencies with no
+    developer program of any kind: api., developer. and docs.moonfruit.com are wildcard
+    DNS records that return the 236KB marketing homepage with HTTP 200, every
+    /.well-known/ path 404s, and the only machine-readable surface on the domain is the
+    stock WordPress REST API at /wp-json/ (WordPress core and third-party plugin
+    namespaces only, no first-party MoonFruit namespace, with the bundled MCP Adapter
+    endpoint returning rest_forbidden 401).
+  evidence:
+  - url: https://api.moonfruit.com/openapi.json
+    status: 200
+  - url: https://moonfruit.com/openapi.json
+    status: 404
+  - url: https://moonfruit.com/.well-known/agent-card.json
+    status: 404
+  - url: https://moonfruit.com/wp-json/
+    status: 200
+  - url: https://moonfruit.com/wp-json/mcp/mcp-adapter-default-server
+    status: 401
+  checked: '2026-08-13'
