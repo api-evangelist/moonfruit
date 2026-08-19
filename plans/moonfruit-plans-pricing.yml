@@ -1,0 +1,22 @@
+generated: '2026-08-13'
+method: searched
+source: https://moonfruit.com/sign-up
+docs: https://moonfruit.com/sign-up
+name: MoonFruit
+plan_count: 0
+plans: []
+note: >-
+  MoonFruit publishes no plans, tiers, or prices. The only commercial surface is the
+  "Submit an Agency" / "Get Listed" application form at https://moonfruit.com/sign-up,
+  which describes a review-and-approval process and states no fee, either free or
+  paid. https://moonfruit.com/pricing and https://moonfruit.com/plans both return 404.
+  An honest zero: pricing for a directory listing is settled off-page, so a buyer
+  cannot determine cost without contacting the company.
+evidence:
+- url: https://moonfruit.com/sign-up
+  status: 200
+  finding: application form, no fee or tier stated
+- url: https://moonfruit.com/pricing
+  status: 404
+- url: https://moonfruit.com/plans
+  status: 404

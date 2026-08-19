@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of https://moonfruit.com and its subdomains
+note: >-
+  Every canonical /.well-known/ path returns 404 on moonfruit.com. Recorded as an
+  absence, not a presence: no WellKnown or SecurityTxt pointer is wired into
+  apis.yml because the provider serves none of these documents.
+host: moonfruit.com
+probes:
+- path: /.well-known/security.txt
+  url: https://moonfruit.com/.well-known/security.txt
+  status: 404
+  file: null
+- path: /.well-known/openid-configuration
+  url: https://moonfruit.com/.well-known/openid-configuration
+  status: 404
+  file: null
+- path: /.well-known/oauth-authorization-server
+  url: https://moonfruit.com/.well-known/oauth-authorization-server
+  status: 404
+  file: null
+- path: /.well-known/api-catalog
+  url: https://moonfruit.com/.well-known/api-catalog
+  status: 404
+  file: null
+- path: /.well-known/ai-plugin.json
+  url: https://moonfruit.com/.well-known/ai-plugin.json
+  status: 404
+  file: null
+- path: /.well-known/agent-card.json
+  url: https://moonfruit.com/.well-known/agent-card.json
+  status: 404
+  file: null
+- path: /.well-known/agent.json
+  url: https://moonfruit.com/.well-known/agent.json
+  status: 404
+  file: null
+hit_count: 0
+other_surfaces:
+- surface: WordPress REST API index
+  url: https://moonfruit.com/wp-json/
+  status: 200
+  content_type: application/json
+  detail: >-
+    moonfruit.com runs WordPress. The stock WP REST API answers anonymously with a
+    393-route index across 27 namespaces, all of them WordPress core or third-party
+    plugins (wp/v2, oembed/1.0, akismet/v1, rankmath/v1, wordfence/v1, astra/v1,
+    spectra/v1, uag/v1, zipwp/v1, sg-ai-studio, siteground-optimizer/v1,
+    cleantalk-antispam/v1, nps-survey/v1, wp-abilities/v1, mcp). No first-party
+    MoonFruit namespace exists. NOT registered as a MoonFruit API: this contract
+    belongs to WordPress and its plugin authors, not to this company, and crediting
+    it would credit MoonFruit with an API it never shipped.
+- surface: WordPress MCP Adapter endpoint
+  url: https://moonfruit.com/wp-json/mcp/mcp-adapter-default-server
+  status: 401
+  detail: >-
+    A POST of {"jsonrpc":"2.0","id":1,"method":"tools/list"} returns
+    {"code":"rest_forbidden","status":401}. The endpoint is the default server of
+    the WordPress MCP Adapter plugin, requires a WordPress login, and is neither
+    documented nor advertised by MoonFruit. No MCPServer pointer wired for the same
+    ownership reason as the REST index above.
+- surface: WordPress Abilities API
+  url: https://moonfruit.com/wp-json/wp-abilities/v1/abilities
+  status: 401
+  detail: Gated behind WordPress authentication (rest_forbidden).
+- surface: wildcard subdomain catch-all
+  url: https://api.moonfruit.com/openapi.json
+  status: 200
+  content_type: text/html
+  detail: >-
+    api., developer., docs. and app.moonfruit.com all resolve to the same Cloudflare
+    addresses and every path on them returns the 236KB WordPress homepage HTML with
+    HTTP 200. This is a soft-200 catch-all, NOT a spec and NOT a developer host —
+    recorded so a later pass does not mistake the 200 for evidence.
+- surface: /llms.txt
+  url: https://moonfruit.com/llms.txt
+  status: 404
+  detail: Soft 404 — WordPress returns the 404 template with status 404. Not served.
